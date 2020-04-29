@@ -5,7 +5,7 @@ from apriltag_ros.msg import AprilTagDetectionArray
 from geometry_msgs.msg import PoseStamped, Point, Quaternion, TransformStamped, PoseArray
 from sensor_msgs.msg import CameraInfo, RegionOfInterest, image_encodings
 import math
-from image_geometry import PinholeCameraModel
+from image_geometry import StereoCameraModel
 import time
 from std_msgs.msg import String, Header
 from darknet_ros_msgs.msg import BoundingBox, BoundingBoxes
