@@ -48,6 +48,7 @@ class OffbPosCtl:
     hover_loc = [-3,1.91,10,0,0,0,0]
     mode="HOVER"
     rgb_target = []
+    target = []
     flag_x = "allow_x"
     flag_y = "allow_y"
     target = []
@@ -101,16 +102,24 @@ class OffbPosCtl:
 
     def depth_image(Img):
 	self.depth = Img
+
+    def depth_eval():
 	cx = self.rgb_target[0]
 	cy = self.rgb_target[1]
-	x_left_lim = cx - 5
-	x_right_lim = cx + 5
-	y_down_lim = cy - 5
-	y_up_lim = cy + 5
-
+	x_left_lim = cx - 3
+	x_right_lim = cx + 3
+	y_down_lim = cy - 3
+	y_up_lim = cy + 3
+	sum = 0
 	depth = self.depth[x_left_lim : x_right_lim, y_down_lim : y_up_lim ] # depth is a matrix
-			   
-
+	for i in range(7):
+	    for j in range(7):
+	        sum = sum + depth[i][j]
+	avg_depth = sum/49
+	K = np.array([[1.0, 0.0, 320.5],[0.0, 1.0, 240.5],[0.0, 0.0, 1.0]])
+	self.target = avg_depth * inv(K)*(self.rgb_target)
+	print(self.target)
+	
     def overlay_mask(mask, image):
 	rgb_mask = cv2.cvtColor(mask, cv2.COLOR_GARY2RGB)
 	img = cv2.addWeighted(rgb_mask, 0.5, image, 0.5, 0)
@@ -177,8 +186,10 @@ class OffbPosCtl:
 		M = cv2.moments(big_object_contour)
 		cx = int(M["m10"]/M["m00"])
 		cy = int(M["m01"]/M["m00"])
-
-		self.rgb_target = [a.xmin+cx; a.xmax+cy]
+		actualx = a.xmin+cx
+		actualy = a.xmax+cy
+		self.rgb_target = [actualx ; actualy ; 1]
+		self.depth_eval()
 		# overlay the mask that we created on the image:
                 #overlay = self.overlay_mask(mask_clean, image) 
 
