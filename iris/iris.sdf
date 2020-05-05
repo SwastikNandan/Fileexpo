@@ -569,12 +569,13 @@
       <accelerometerBiasCorrelationTime>300.0</accelerometerBiasCorrelationTime>
       <accelerometerTurnOnBiasSigma>0.196</accelerometerTurnOnBiasSigma>
     </plugin>
-<include>
-      <uri>model://stereo_camera</uri>
-      <pose>0.1 0 0 0 0 0</pose>
+ <include>
+
+      <uri>model://depth_camera</uri>
+      <pose>0 0 -0.2 0 0.785 3.14</pose>
     </include>
-    <joint name="stereo_camera_joint" type="revolute">
-      <child>stereo_camera::link</child>
+    <joint name="depth_camera_joint" type="revolute">
+      <child>depth_camera::link</child>
       <parent>iris::base_link</parent>
       <axis>
         <xyz>0 0 1</xyz>
