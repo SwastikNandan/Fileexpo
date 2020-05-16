@@ -1,0 +1,187 @@
+<sdf version='1.6'>
+  <world name='default'>
+    <model name='crater-field'>
+      <pose frame=''>0 0 -2 0 -0 0</pose>
+      <static>1</static>
+      <link name='body'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file://crater-world.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file://crater-world.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+<include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <physics name='default_physics' default='0' type='ode'>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>25</iters>
+          <sor>1.3</sor>
+          <use_dynamic_moi_rescaling>0</use_dynamic_moi_rescaling>
+        </solver>
+        <constraints>
+          <cfm>0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>100</contact_max_correcting_vel>
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+    </physics>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>52.8648 23.2711 176.229 0 -0.149796 -1.73334</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+   
+    <light name='user_directional_light_0' type='directional'>
+      <pose frame=''>0.080902 -2.29414 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>0.1 0.1 -0.9</direction>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>1</cast_shadows>
+    </light>
+    <state world_name='default'>
+      <sim_time>839 44000000</sim_time>
+      <real_time>3592 687289899</real_time>
+      <wall_time>1584361486 362331668</wall_time>
+      <iterations>209761</iterations>
+      <model name='crater-field'>
+        <pose frame=''>0 0 -2 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='body'>
+          <pose frame=''>0 0 -2 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='rover'>
+        <pose frame=''>-96.2837 -35.2437 -0.711607 -0.073556 0.020386 -1.34793</pose>
+        <scale>1 1 1</scale>
+        <link name='base_link'>
+          <pose frame=''>-96.2837 -35.2437 -0.711607 -0.073556 0.020386 -1.34793</pose>
+          <velocity>0.668836 -3.66428 -0.126481 0.060773 0.082729 -0.16343</velocity>
+          <acceleration>-0.193851 -1.40423 -0.383048 1.77169 0.720963 2.74371</acceleration>
+          <wrench>-139.573 -1011.05 -275.795 0 -0 0</wrench>
+        </link>
+        <link name='f450/robot_camera'>
+          <pose frame=''>-96.1473 -35.3466 0.781976 -0.073555 0.020387 -1.34793</pose>
+          <velocity>0.775489 -3.77731 -0.144022 0.060853 0.082269 -0.163389</velocity>
+          <acceleration>2.43836 -3.40277 -0.565625 -1.36706 0.734995 2.60377</acceleration>
+          <wrench>0.036575 -0.051042 -0.008484 0 -0 0</wrench>
+        </link>
+        <link name='front_left_wheel'>
+          <pose frame=''>-95.2909 -36.2882 -0.420916 1.38926 1.3801 1.47698</pose>
+          <velocity>0.49443 -3.87415 -0.131713 -0.510562 1.53509 0.08975</velocity>
+          <acceleration>-2.01198 1.4495 0.535698 2.99475 -1.19597 -2.85532</acceleration>
+          <wrench>-24.1438 17.394 6.42837 0 -0 0</wrench>
+        </link>
+        <link name='front_left_wheel_steering_block'>
+          <pose frame=''>-95.5046 -36.3064 -0.414109 1.53982 0.010363 -1.48498</pose>
+          <velocity>0.495489 -3.80968 -0.235847 -0.017433 0.756283 -0.352648</velocity>
+          <acceleration>-1.65814 -1.57675 -2.79702 -0.554236 -0.592645 3.08576</acceleration>
+          <wrench>-1.65814 -1.57675 -2.79702 0 -0 0</wrench>
+        </link>
+        <link name='front_right_wheel'>
+          <pose frame=''>-96.6673 -36.6299 -0.339906 1.45583 -0.088844 -1.06584</pose>
+          <velocity>0.433851 -3.54794 -0.203192 2.72762 -1.49541 -1.73308</velocity>
+          <acceleration>-0.499288 -1.23554 -1.50141 2.13348 -0.758178 -2.37036</acceleration>
+          <wrench>-5.99146 -14.8264 -18.0169 0 -0 0</wrench>
+        </link>
+        <link name='front_right_wheel_steering_block'>
+          <pose frame=''>-96.4771 -36.5282 -0.345398 1.50686 0.039156 -1.0805</pose>
+          <velocity>0.490193 -3.65461 -0.195371 0.091309 -0.032165 -0.572656</velocity>
+          <acceleration>-0.892556 -1.09383 -2.25294 -1.27974 -1.41892 0.934504</acceleration>
+          <wrench>-0.892556 -1.09383 -2.25294 0 -0 0</wrench>
+        </link>
+        <link name='rear_left_wheel'>
+          <pose frame=''>-95.7815 -34.1173 -0.397913 -1.62655 -1.08061 -1.29751</pose>
+          <velocity>0.878221 -3.76656 -0.099816 2.50651 0.350777 2.65121</velocity>
+          <acceleration>0.511088 -1.82987 0.143376 -1.28295 1.41493 2.0104</acceleration>
+          <wrench>6.13306 -21.9585 1.72051 0 -0 0</wrench>
+        </link>
+        <link name='rear_right_wheel'>
+          <pose frame=''>-97.173 -34.4347 -0.292307 1.33849 -0.98574 -1.15138</pose>
+          <velocity>0.837029 -3.54498 0.000353 1.57011 0.547881 1.54854</velocity>
+          <acceleration>-0.141647 -1.1441 1.15679 0.955756 0.830478 1.88627</acceleration>
+          <wrench>-1.69976 -13.7293 13.8815 0 -0 0</wrench>
+        </link>
+        <link name='rover/imu_link'>
+          <pose frame=''>-96.2837 -35.2437 -0.711604 -0.073557 0.020386 -1.34793</pose>
+          <velocity>0.668792 -3.66429 -0.126472 0.060749 0.082866 -0.163442</velocity>
+          <acceleration>-1.04592 -0.688433 -0.099307 -1.40906 0.848761 2.60742</acceleration>
+          <wrench>-0.015689 -0.010327 -0.00149 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='user_directional_light_0'>
+        <pose frame=''>0.080902 -2.29414 1 -0.089489 -1.27615 0.075169</pose>
+      </light>
+    </state>
+  </world>
+</sdf>
